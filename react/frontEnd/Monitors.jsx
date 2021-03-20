@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import axios from 'axios';  
 
 const MONITORS_REST_API_URL = "http://localhost:8080/api/allMonitors";
+const DELETE_REST_API_URL = "http://localhost:8080/api/delete/";
 
 class Monitor extends Component { 
     constructor(props) {
@@ -21,6 +22,17 @@ class Monitor extends Component {
             this.setState({ 
                 monitors: res.data
             });
+        });
+    }
+
+    deleteMonitor(monitorId) {
+        axios.delete(DELETE_REST_API_URL + monitorId);
+    }
+
+    delete(id) {
+        axios.delete(DELETE_REST_API_URL + `${id}`)
+        .then(() => {
+            this.componentDidMount();
         });
     }
 
