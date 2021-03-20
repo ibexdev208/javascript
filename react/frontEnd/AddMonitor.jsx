@@ -15,7 +15,7 @@ class AddMonitor extends Component {
             model: '',
             price: ''
         } 
-    }//constructor() 
+    }//constructor()  
 
     initialState = { 
         brand: '',
@@ -29,18 +29,18 @@ class AddMonitor extends Component {
     }
 
     saveMonitor = (e) => {
-         e.preventDefault();
-         let monitor = {
+        e.preventDefault();
+        let monitor = {
             brand: this.state.brand,
             resolution: this.state.resolution,
             model: this.state.model,
             price: this.state.price
-         }
+        }
 
-         MonitorService.createMonitor(monitor).then(res => {
+        createMonitor(monitor).then(res => {
             //Reset all fields
             this.setState(() => this.initialState);
-         });
+        });
     }
 
     render() {

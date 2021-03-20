@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { FaSave } from 'react-icons/fa';
 import axios from 'axios';
 
-const BASE_REST_API_URL = "http://localhost:8080/api";
+const BASE_REST_API_URL = "http://localhost:8080/api/";
 
 class EditMonitor  extends Component {
 
@@ -20,11 +20,11 @@ class EditMonitor  extends Component {
     }//constructor() 
 
     getMonitorById(monitorId) {
-        return axios.get(BASE_REST_API_URL + '/' + monitorId);
+        return axios.get(BASE_REST_API_URL + monitorId);
     }
 
     updateMonitor(monitorId, monitor) {
-        return axios.put(BASE_REST_API_URL + '/' + monitorId, monitor);
+        return axios.put(BASE_REST_API_URL + monitorId, monitor);
     }
 
     componentWillMount() {
@@ -41,6 +41,8 @@ class EditMonitor  extends Component {
     }
 
     editMonitor = (e) => {
+        //To prevent the browser from reloading or refreshing when the submit button is pressed 
+        //the preventDefault on an event is used to alleviate this issue.
         e.preventDefault();
          let monitor = {
             brand: this.state.brand,
